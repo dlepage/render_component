@@ -50,6 +50,7 @@ module RenderComponent
         def render_component_into_view(options) #:doc:
           component_logging(options) do
             response = component_response(options, false)[2]
+            response = component_response(options, false)[2] if response == []    #Hack Patch !!! Sometime response == [] ???
             if redirected = response.redirect_url
               if redirected =~ %r{://}
                 location = URI.parse(redirected)
